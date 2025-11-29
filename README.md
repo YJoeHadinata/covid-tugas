@@ -76,20 +76,31 @@ Prediksi jumlah kasus baru dari variabel kebijakan (stringency_index, new_vaccin
 ![Prediksi Kasus RF](cases_prediction_rf.png)
 Prediksi jumlah kasus baru menggunakan Random Forest dengan parameter n_estimators=100, max_depth=5.
 
+## Penjelasan R² Score
+
+R² Score (koefisien determinasi) adalah ukuran seberapa baik model regresi cocok dengan data. Nilainya berkisar dari -∞ sampai 1:
+
+- **1.0** = Model sempurna (menjelaskan 100% variasi data)
+- **0.0** = Model tidak lebih baik dari menebak rata-rata
+- **Negatif** = Model lebih buruk dari menebak rata-rata
+
 ## Hasil Prediksi
 
 ### Linear Regression untuk Kematian dari Kasus:
-- R² Score: -28.83 (buruk, menunjukkan model tidak cocok untuk data ini)
+- R² Score: -28.83 (sangat buruk, negatif - model tidak cocok sama sekali)
 - Koefisien: 0.033
 - Intercept: 4.316
+- Interpretasi: Model gagal menjelaskan hubungan kematian vs kasus
 
 ### Linear Regression untuk Kasus dari Kebijakan:
-- R² Score: 0.421
-- Koefisien: [2425.99, -0.068, 0.197]
+- R² Score: 0.421 (cukup baik - menjelaskan 42.1% variasi)
+- Koefisien: [2425.99, -0.068, 0.197] untuk [stringency, vaccinations, tests]
 - Intercept: -173258.69
+- Interpretasi: Model moderate, masih ada 57.9% variasi yang tidak dijelaskan
 
 ### Random Forest untuk Kasus dari Kebijakan:
-- R² Score: -0.652 (buruk, mungkin overfitting atau data tidak cukup)
+- R² Score: -0.652 (buruk, negatif - kemungkinan overfitting)
+- Interpretasi: Model terlalu kompleks untuk data yang tersedia
 
 ## Kesimpulan
 Analisis bivariate menunjukkan pola evolusi hubungan antara variabel COVID-19 dari waktu ke waktu. Model prediksi sederhana memberikan hasil yang bervariasi, dengan performa terbaik pada prediksi kasus dari kebijakan menggunakan Linear Regression.
