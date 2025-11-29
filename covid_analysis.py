@@ -1,6 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
+from mpl_toolkits.mplot3d import Axes3D
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import r2_score
 
 #reading data from file
 df = pd.read_csv('covid.csv')
@@ -265,13 +270,9 @@ df3.reset_index(drop=True, inplace=True)
 print(df3.shape)
 print(df3.head())
 
-from sklearn.model_selection import train_test_split
-
 x=df3[['people_fully_vaccinated_per_hundred']].values
 y=df3[['new_cases_smoothed_per_million']].values
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=False)
-
-from sklearn.linear_model import LinearRegression
 
 reg = LinearRegression().fit(x_train, y_train)
 print(reg.score(x_train, y_train))
@@ -292,7 +293,6 @@ plt.show()
 
 print(len(y_pred))
 
-from sklearn.metrics import r2_score
 print(r2_score(y_test, y_pred))
 
 #Selecting certain parameters for prediction
@@ -354,3 +354,152 @@ plt.show()
 print(len(y_pred))
 
 print(r2_score(y_test, y_pred))
+
+# Cross-sectional analysis from covidpredictTotal.ipynb
+print("\n" + "="*50)
+print("CROSS-SECTIONAL COUNTRY ANALYSIS")
+print("="*50)
+
+# Picking data from a certain date (snapshot analysis)
+snapshot_date = '2022-05-01'
+df_snapshot = df.loc[df['date'] == snapshot_date]
+
+# Selecting certain parameters for cross-sectional analysis
+df_snapshot = df_snapshot[['location', 'total_cases_per_million', 'total_deaths_per_million',
+                          'total_vaccinations_per_hundred', 'total_tests_per_thousand']]
+
+print(f"Cross-sectional data shape for {snapshot_date}:", df_snapshot.shape)
+print("Sample countries:")
+print(df_snapshot.head(10))
+
+# Selecting data from Indonesia for highlighting
+df_indonesia = df_snapshot.loc[df_snapshot['location'] == 'Indonesia']
+print("\nIndonesia data:")
+print(df_indonesia)
+
+# Sorting values by total deaths per million
+df_snapshot_sorted = df_snapshot.sort_values(by=['total_deaths_per_million'], ascending=False)
+print("\nTop 20 countries by total deaths per million:")
+print(df_snapshot_sorted.head(20)[['location', 'total_deaths_per_million']])
+
+# 3D Scatter Plot
+fig = plt.figure(figsize=(12, 10))
+ax = fig.add_subplot(111, projection='3d')
+
+# Plot all countries
+ax.scatter(df_snapshot['total_cases_per_million'],
+           df_snapshot['total_deaths_per_million'],
+           df_snapshot['total_vaccinations_per_hundred'],
+           s=50, edgecolor="k", alpha=0.6, label='All Countries')
+
+# Highlight Indonesia
+if not df_indonesia.empty:
+    ax.scatter(df_indonesia['total_cases_per_million'],
+               df_indonesia['total_deaths_per_million'],
+               df_indonesia['total_vaccinations_per_hundred'],
+               c='red', marker="s", s=200, edgecolor="k", label='Indonesia')
+
+ax.set_title(f'COVID-19 Cross-Sectional Analysis ({snapshot_date})')
+ax.set_xlabel('Total Cases per Million')
+ax.set_ylabel('Total Deaths per Million')
+ax.set_zlabel('Total Vaccinations per Hundred')
+ax.legend()
+plt.savefig('cross_sectional_3d_analysis.png')
+plt.show()
+
+# Country-level predictions
+print("\n" + "="*50)
+print("COUNTRY-LEVEL PREDICTIONS")
+print("="*50)
+
+# Prediction 1: Total deaths from total cases
+df_pred1 = df_snapshot[['total_cases_per_million', 'total_deaths_per_million']].dropna()
+print(f"Prediction 1 - Data shape: {df_pred1.shape}")
+
+if len(df_pred1) > 10:
+    x = df_pred1[['total_cases_per_million']].values
+    y = df_pred1[['total_deaths_per_million']].values
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=True)
+
+    reg1 = LinearRegression().fit(x_train, y_train)
+    print(f"R² Score (train): {reg1.score(x_train, y_train)}")
+    print(f"Coefficients: {reg1.coef_}")
+    print(f"Intercept: {reg1.intercept_}")
+
+    y_pred = reg1.predict(x_test)
+    r2 = r2_score(y_test, y_pred)
+    print(f"R² Score (test): {r2}")
+
+    # Scatter plot with regression line
+    plt.figure(figsize=(10, 6))
+    plt.scatter(x_train, y_train, alpha=0.6, label='Training Data')
+    plt.scatter(x_test, y_test, alpha=0.6, c='orange', label='Test Data')
+    plt.plot(x_test, y_pred, 'r-', linewidth=2, label='Predictions')
+    plt.title('Total Deaths vs Total Cases per Million (Cross-Sectional)')
+    plt.xlabel('Total Cases per Million')
+    plt.ylabel('Total Deaths per Million')
+    plt.legend()
+    plt.grid(True)
+    plt.savefig('cross_sectional_deaths_vs_cases.png')
+    plt.show()
+
+# Prediction 2: Total deaths from vaccination rates
+df_pred2 = df_snapshot[['total_vaccinations_per_hundred', 'total_deaths_per_million']].dropna()
+print(f"\nPrediction 2 - Data shape: {df_pred2.shape}")
+
+if len(df_pred2) > 10:
+    x = df_pred2[['total_vaccinations_per_hundred']].values
+    y = df_pred2[['total_deaths_per_million']].values
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=True)
+
+    reg2 = LinearRegression().fit(x_train, y_train)
+    print(f"R² Score (train): {reg2.score(x_train, y_train)}")
+    print(f"Coefficients: {reg2.coef_}")
+    print(f"Intercept: {reg2.intercept_}")
+
+    y_pred = reg2.predict(x_test)
+    r2 = r2_score(y_test, y_pred)
+    print(f"R² Score (test): {r2}")
+
+    # Scatter plot with regression line
+    plt.figure(figsize=(10, 6))
+    plt.scatter(x_train, y_train, alpha=0.6, label='Training Data')
+    plt.scatter(x_test, y_test, alpha=0.6, c='orange', label='Test Data')
+    plt.plot(x_test, y_pred, 'r-', linewidth=2, label='Predictions')
+    plt.title('Total Deaths vs Vaccination Rate per Hundred (Cross-Sectional)')
+    plt.xlabel('Total Vaccinations per Hundred')
+    plt.ylabel('Total Deaths per Million')
+    plt.legend()
+    plt.grid(True)
+    plt.savefig('cross_sectional_deaths_vs_vaccinations.png')
+    plt.show()
+
+# Prediction 3: Multivariate - deaths from cases and vaccinations
+df_pred3 = df_snapshot[['total_vaccinations_per_hundred', 'total_cases_per_million', 'total_deaths_per_million']].dropna()
+print(f"\nPrediction 3 (Multivariate) - Data shape: {df_pred3.shape}")
+
+if len(df_pred3) > 10:
+    x = df_pred3[['total_vaccinations_per_hundred', 'total_cases_per_million']].values
+    y = df_pred3[['total_deaths_per_million']].values
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=True)
+
+    reg3 = LinearRegression().fit(x_train, y_train)
+    print(f"R² Score (train): {reg3.score(x_train, y_train)}")
+    print(f"Coefficients: {reg3.coef_}")
+    print(f"Intercept: {reg3.intercept_}")
+
+    y_pred = reg3.predict(x_test)
+    r2 = r2_score(y_test, y_pred)
+    print(f"R² Score (test): {r2}")
+
+    # Plot predictions vs actual
+    plt.figure(figsize=(10, 6))
+    plt.scatter(y_test, y_pred, alpha=0.6)
+    plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', linewidth=2, label='Perfect Prediction')
+    plt.title('Multivariate Prediction: Deaths from Cases & Vaccinations')
+    plt.xlabel('Actual Total Deaths per Million')
+    plt.ylabel('Predicted Total Deaths per Million')
+    plt.legend()
+    plt.grid(True)
+    plt.savefig('cross_sectional_multivariate_prediction.png')
+    plt.show()
