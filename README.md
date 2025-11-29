@@ -114,28 +114,28 @@ Analisis cross-sectional mengambil snapshot data dari tanggal tertentu (2022-05-
 ### 3D Scatter Plot Semua Negara
 ![Analisis Cross-Sectional 3D](cross_sectional_3d_analysis.png)
 Plot 3D menampilkan hubungan antara:
-- Total Cases per Million (X)
-- Total Deaths per Million (Y)
-- Total Vaccinations per Hundred (Z)
+- Reproduction Rate (X)
+- New Cases per Million (Y)
+- People Fully Vaccinated (%) (Z)
 
 Indonesia ditandai dengan marker merah untuk perbandingan.
 
 ### Prediksi Antar Negara
 
-#### Prediksi Kematian dari Kasus (Cross-Sectional):
-- R² Score (test): 0.196
-- Koefisien: 0.0045
-- Interpretasi: Hubungan positif lemah antara kasus dan kematian antar negara
+#### Prediksi Kasus dari Reproduction Rate (Cross-Sectional):
+- R² Score (test): 0.034
+- Koefisien: 156.54
+- Interpretasi: Hubungan positif lemah antara reproduction rate dan kasus baru antar negara
 
-#### Prediksi Kematian dari Vaksinasi (Cross-Sectional):
-- R² Score (test): 0.078
-- Koefisien: 6.47
-- Interpretasi: Vaksinasi berkorelasi positif dengan kematian (kemungkinan confounding)
+#### Prediksi Kasus dari Vaksinasi (Cross-Sectional):
+- R² Score (test): 0.265
+- Koefisien: 5.69
+- Interpretasi: Vaksinasi memiliki dampak moderat terhadap penurunan kasus antar negara
 
-#### Prediksi Multivariate (Kasus + Vaksinasi → Kematian):
-- R² Score (test): 0.413
-- Koefisien: [1.094, 0.0047]
-- Interpretasi: Model terbaik untuk prediksi cross-sectional
+#### Prediksi Multivariate (Reproduction Rate + Vaksinasi → Kasus):
+- R² Score (test): 0.124
+- Koefisien: [5.34, -51.53]
+- Interpretasi: Model dengan dua prediktor memberikan hasil yang reasonable untuk cross-sectional
 
 ## Kesimpulan
 Analisis bivariate menunjukkan pola evolusi hubungan antara variabel COVID-19 dari waktu ke waktu. Model prediksi sederhana memberikan hasil yang bervariasi, dengan performa terbaik pada prediksi kasus dari kebijakan menggunakan Linear Regression.
