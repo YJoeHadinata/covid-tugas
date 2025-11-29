@@ -33,10 +33,10 @@ plt.show()
 
 #Selecting certain country in data columns
 df1 = df.loc[df['location'] == 'Indonesia']
-df1=df1[['location','date','new_deaths', 'new_cases','positive_rate', 'new_cases_smoothed','new_deaths_smoothed']]
+df1=df1[['location','date','reproduction_rate', 'new_cases_smoothed_per_million','people_fully_vaccinated_per_hundred', 'weekly_hosp_admissions_per_million']]
 
 df2 = df.loc[df['location'] == 'United Kingdom']
-df2=df2[['location','date','new_deaths', 'new_cases','positive_rate', 'new_cases_smoothed','new_deaths_smoothed']]
+df2=df2[['location','date','reproduction_rate', 'new_cases_smoothed_per_million','people_fully_vaccinated_per_hundred', 'weekly_hosp_admissions_per_million']]
 
 #Reseting data index
 df1.reset_index(drop=True, inplace=True)
@@ -54,22 +54,22 @@ df2=df2.iloc[len(df2)-xdays:]
 #For colormap to show time elapsing
 numbers=range(len(df1))
 
-df1.plot.scatter(x='new_cases_smoothed',y='new_deaths_smoothed',s=50, c=numbers, colormap='plasma')
+df1.plot.scatter(x='reproduction_rate',y='new_cases_smoothed_per_million',s=50, c=numbers, colormap='plasma')
 plt.grid()
-plt.savefig('indonesia_cases_vs_deaths.png')
+plt.savefig('indonesia_reproduction_vs_cases_per_million.png')
 plt.show()
 
-df2.plot.scatter(x='new_cases_smoothed',y='new_deaths_smoothed',s=50, c=numbers, colormap='plasma')
+df2.plot.scatter(x='reproduction_rate',y='new_cases_smoothed_per_million',s=50, c=numbers, colormap='plasma')
 plt.grid()
-plt.savefig('uk_cases_vs_deaths.png')
+plt.savefig('uk_reproduction_vs_cases_per_million.png')
 plt.show()
 
 #Selecting certain country in data columns
 df1 = df.loc[df['location'] == 'Indonesia']
-df1=df1[['location','date','new_deaths', 'stringency_index']]
+df1=df1[['location','date','reproduction_rate', 'people_fully_vaccinated_per_hundred']]
 
 df2 = df.loc[df['location'] == 'United Kingdom']
-df2=df2[['location','date','new_deaths', 'stringency_index']]
+df2=df2[['location','date','reproduction_rate', 'people_fully_vaccinated_per_hundred']]
 
 #Reseting data index
 df1.reset_index(drop=True, inplace=True)
@@ -87,22 +87,22 @@ df2=df2.iloc[len(df2)-xdays:]
 #For colormap to show time elapsing
 numbers=range(len(df1))
 
-df1.plot.scatter(x='stringency_index',y='new_deaths',s=50, c=numbers, colormap='plasma')
+df1.plot.scatter(x='reproduction_rate',y='people_fully_vaccinated_per_hundred',s=50, c=numbers, colormap='plasma')
 plt.grid()
-plt.savefig('indonesia_stringency_vs_deaths.png')
+plt.savefig('indonesia_reproduction_vs_vaccination.png')
 plt.show()
 
-df2.plot.scatter(x='stringency_index',y='new_deaths',s=50, c=numbers, colormap='plasma')
+df2.plot.scatter(x='reproduction_rate',y='people_fully_vaccinated_per_hundred',s=50, c=numbers, colormap='plasma')
 plt.grid()
-plt.savefig('uk_stringency_vs_deaths.png')
+plt.savefig('uk_reproduction_vs_vaccination.png')
 plt.show()
 
 #Selecting certain country in data columns
 df1 = df.loc[df['location'] == 'Indonesia']
-df1=df1[['location','date','new_cases', 'stringency_index']]
+df1=df1[['location','date','new_cases_smoothed_per_million', 'people_fully_vaccinated_per_hundred']]
 
 df2 = df.loc[df['location'] == 'United Kingdom']
-df2=df2[['location','date','new_cases', 'stringency_index']]
+df2=df2[['location','date','new_cases_smoothed_per_million', 'people_fully_vaccinated_per_hundred']]
 
 #Reseting data index
 df1.reset_index(drop=True, inplace=True)
@@ -120,22 +120,22 @@ df2=df2.iloc[len(df2)-xdays:]
 #For colormap to show time elapsing
 numbers=range(len(df1))
 
-df1.plot.scatter(x='stringency_index',y='new_cases',s=50, c=numbers, colormap='plasma')
+df1.plot.scatter(x='new_cases_smoothed_per_million',y='people_fully_vaccinated_per_hundred',s=50, c=numbers, colormap='plasma')
 plt.grid()
-plt.savefig('indonesia_stringency_vs_cases.png')
+plt.savefig('indonesia_cases_per_million_vs_vaccination.png')
 plt.show()
 
-df2.plot.scatter(x='stringency_index',y='new_cases',s=50, c=numbers, colormap='plasma')
+df2.plot.scatter(x='new_cases_smoothed_per_million',y='people_fully_vaccinated_per_hundred',s=50, c=numbers, colormap='plasma')
 plt.grid()
-plt.savefig('uk_stringency_vs_cases.png')
+plt.savefig('uk_cases_per_million_vs_vaccination.png')
 plt.show()
 
 #Selecting certain country in data columns
 df1 = df.loc[df['location'] == 'Indonesia']
-df1=df1[['location','date','stringency_index','reproduction_rate']]
+df1=df1[['location','date','reproduction_rate','weekly_hosp_admissions_per_million']]
 
-df2 = df.loc[df['location'] == 'South Korea']
-df2=df2[['location','date','stringency_index','reproduction_rate']]
+df2 = df.loc[df['location'] == 'United Kingdom']
+df2=df2[['location','date','reproduction_rate','weekly_hosp_admissions_per_million']]
 
 df1=df1.dropna()
 df2=df2.dropna()
@@ -148,22 +148,22 @@ df2.reset_index(drop=True, inplace=True)
 numbers1=range(len(df1))
 numbers2=range(len(df2))
 
-df1.plot.scatter(x='stringency_index',y='reproduction_rate',s=50, c=numbers1, colormap='plasma')
+df1.plot.scatter(x='reproduction_rate',y='weekly_hosp_admissions_per_million',s=50, c=numbers1, colormap='plasma')
 plt.grid()
-plt.savefig('indonesia_stringency_vs_reproduction.png')
+plt.savefig('indonesia_reproduction_vs_hospitalizations.png')
 plt.show()
 
-df2.plot.scatter(x='stringency_index',y='reproduction_rate',s=50, c=numbers2, colormap='plasma')
+df2.plot.scatter(x='reproduction_rate',y='weekly_hosp_admissions_per_million',s=50, c=numbers2, colormap='plasma')
 plt.grid()
-plt.savefig('south_korea_stringency_vs_reproduction.png')
+plt.savefig('uk_reproduction_vs_hospitalizations.png')
 plt.show()
 
 #Selecting certain country in data columns
 df1 = df.loc[df['location'] == 'Indonesia']
-df1=df1[['location','date','new_vaccinations','reproduction_rate']]
+df1=df1[['location','date','new_cases_smoothed_per_million','weekly_hosp_admissions_per_million']]
 
-df2 = df.loc[df['location'] == 'South Korea']
-df2=df2[['location','date','new_vaccinations','reproduction_rate']]
+df2 = df.loc[df['location'] == 'United Kingdom']
+df2=df2[['location','date','new_cases_smoothed_per_million','weekly_hosp_admissions_per_million']]
 
 df1=df1.dropna()
 df2=df2.dropna()
@@ -176,22 +176,22 @@ df2.reset_index(drop=True, inplace=True)
 numbers1=range(len(df1))
 numbers2=range(len(df2))
 
-df1.plot.scatter(x='new_vaccinations',y='reproduction_rate',s=50, c=numbers1, colormap='plasma')
+df1.plot.scatter(x='new_cases_smoothed_per_million',y='weekly_hosp_admissions_per_million',s=50, c=numbers1, colormap='plasma')
 plt.grid()
-plt.savefig('indonesia_vaccinations_vs_reproduction.png')
+plt.savefig('indonesia_cases_per_million_vs_hospitalizations.png')
 plt.show()
 
-df2.plot.scatter(x='new_vaccinations',y='reproduction_rate',s=50, c=numbers2, colormap='plasma')
+df2.plot.scatter(x='new_cases_smoothed_per_million',y='weekly_hosp_admissions_per_million',s=50, c=numbers2, colormap='plasma')
 plt.grid()
-plt.savefig('south_korea_vaccinations_vs_reproduction.png')
+plt.savefig('uk_cases_per_million_vs_hospitalizations.png')
 plt.show()
 
 #Selecting certain country in data columns
 df_vac1 = df.loc[df['location'] == 'Indonesia']
-df_vac1=df_vac1[['location','date','new_vaccinations','new_deaths']]
+df_vac1=df_vac1[['location','date','people_fully_vaccinated_per_hundred','weekly_hosp_admissions_per_million']]
 
 df_vac2 = df.loc[df['location'] == 'United Kingdom']
-df_vac2=df_vac2[['location','date','new_vaccinations','new_deaths']]
+df_vac2=df_vac2[['location','date','people_fully_vaccinated_per_hundred','weekly_hosp_admissions_per_million']]
 
 df_vac1=df_vac1.dropna()
 df_vac2=df_vac2.dropna()
@@ -204,19 +204,19 @@ df_vac2.reset_index(drop=True, inplace=True)
 numbers1=range(len(df_vac1))
 numbers2=range(len(df_vac2))
 
-df_vac1.plot.scatter(x='new_vaccinations',y='new_deaths',s=50, c=numbers1, colormap='plasma')
+df_vac1.plot.scatter(x='people_fully_vaccinated_per_hundred',y='weekly_hosp_admissions_per_million',s=50, c=numbers1, colormap='plasma')
 plt.grid()
-plt.savefig('indonesia_vaccinations_vs_deaths.png')
+plt.savefig('indonesia_vaccination_vs_hospitalizations.png')
 plt.show()
 
-df_vac2.plot.scatter(x='new_vaccinations',y='new_deaths',s=50, c=numbers2, colormap='plasma')
+df_vac2.plot.scatter(x='people_fully_vaccinated_per_hundred',y='weekly_hosp_admissions_per_million',s=50, c=numbers2, colormap='plasma')
 plt.grid()
-plt.savefig('uk_vaccinations_vs_deaths.png')
+plt.savefig('uk_vaccination_vs_hospitalizations.png')
 plt.show()
 
 #Selecting certain parameters for prediction
 df1 = df.loc[df['location'] == 'Indonesia']
-df3=df1[['new_cases','new_deaths']]
+df3=df1[['new_cases_smoothed_per_million','people_fully_vaccinated_per_hundred']]
 print(df3.shape)
 print(df3.head())
 
@@ -227,8 +227,8 @@ print(df3.head())
 
 from sklearn.model_selection import train_test_split
 
-x=df3[['new_cases']].values
-y=df3[['new_deaths']].values
+x=df3[['people_fully_vaccinated_per_hundred']].values
+y=df3[['new_cases_smoothed_per_million']].values
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=False)
 
 from sklearn.linear_model import LinearRegression
@@ -239,13 +239,11 @@ print(reg.coef_)
 print(reg.intercept_)
 
 y_pred=reg.predict(x_test)
-#assume deaths number will be delayed by 14 days and delta is 2x more deadly than previous data
-y_predpad=np.pad(0.15*y_pred[0:len(y_pred)-10],(10,0),'minimum')
 
 plt.plot(y_test)
-plt.plot(y_predpad,'r')
+plt.plot(y_pred,'r')
 plt.grid()
-plt.savefig('deaths_prediction_linear.png')
+plt.savefig('cases_per_million_prediction_linear.png')
 plt.show()
 
 print(len(y_pred))
@@ -254,7 +252,7 @@ from sklearn.metrics import r2_score
 print(r2_score(y_test, y_pred))
 
 #Selecting certain parameters for prediction
-df3=df1[['new_cases','new_vaccinations','stringency_index','new_tests','new_deaths']]
+df3=df1[['new_cases_smoothed_per_million','reproduction_rate','people_fully_vaccinated_per_hundred']]
 print(df3.shape)
 print(df3.head())
 
@@ -263,8 +261,8 @@ df3.reset_index(drop=True, inplace=True)
 print(df3.shape)
 print(df3.head())
 
-x=df3[['stringency_index','new_vaccinations','new_tests']].values
-y=df3[['new_cases']].values
+x=df3[['reproduction_rate','people_fully_vaccinated_per_hundred']].values
+y=df3[['new_cases_smoothed_per_million']].values
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=42, shuffle=False)
 
 reg = LinearRegression().fit(x_train, y_train)
@@ -277,7 +275,7 @@ y_pred=reg.predict(x_test)
 plt.plot(y_test)
 plt.plot(y_pred,'r')
 plt.grid()
-plt.savefig('cases_prediction_linear.png')
+plt.savefig('cases_per_million_prediction_linear_multi.png')
 plt.show()
 
 print(len(y_pred))
@@ -286,8 +284,8 @@ print(r2_score(y_test, y_pred))
 
 from sklearn.ensemble import RandomForestRegressor
 
-x=df3[['new_vaccinations','new_tests','stringency_index']].values
-y=df3[['new_cases']].values
+x=df3[['reproduction_rate','people_fully_vaccinated_per_hundred']].values
+y=df3[['new_cases_smoothed_per_million']].values
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=42, shuffle=False)
 
 forest_reg = RandomForestRegressor(n_estimators=100, random_state=0, max_depth=5)
@@ -298,7 +296,7 @@ y_pred=forest_reg.predict(x_test)
 plt.plot(y_test)
 plt.plot(y_pred,'r')
 plt.grid()
-plt.savefig('cases_prediction_rf.png')
+plt.savefig('cases_per_million_prediction_rf_multi.png')
 plt.show()
 
 print(len(y_pred))

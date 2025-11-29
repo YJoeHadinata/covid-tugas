@@ -12,69 +12,73 @@ Proyek ini melakukan analisis bivariate antara variabel COVID-19 untuk Indonesia
 Grafik ini menunjukkan perbandingan jumlah kasus baru harian antara Indonesia (biru) dan United Kingdom (merah) selama 720 hari terakhir.
 
 ### Scatter Plot dengan Pewarnaan Waktu
-Grafik scatter plot berikut menggunakan colormap 'plasma' untuk menunjukkan evolusi hubungan dari waktu ke waktu (dari ungu tua ke kuning terang).
+Grafik scatter plot berikut menggunakan colormap 'plasma' untuk menunjukkan evolusi hubungan dari waktu ke waktu (dari ungu tua ke kuning terang) menggunakan variabel baru:
+- reproduction_rate
+- new_cases_smoothed_per_million
+- people_fully_vaccinated_per_hundred
+- weekly_hosp_admissions_per_million
 
-#### Indonesia: Kasus Baru vs Kematian Baru
-![Indonesia Kasus vs Kematian](indonesia_cases_vs_deaths.png)
-Hubungan antara jumlah kasus baru dan kematian baru di Indonesia.
+#### Indonesia: Reproduction Rate vs Kasus per Juta
+![Indonesia Reproduction vs Cases per Million](indonesia_reproduction_vs_cases_per_million.png)
+Hubungan antara reproduction rate dan kasus baru per juta penduduk di Indonesia.
 
-#### UK: Kasus Baru vs Kematian Baru
-![UK Kasus vs Kematian](uk_cases_vs_deaths.png)
-Hubungan antara jumlah kasus baru dan kematian baru di United Kingdom.
+#### UK: Reproduction Rate vs Kasus per Juta
+![UK Reproduction vs Cases per Million](uk_reproduction_vs_cases_per_million.png)
+Hubungan antara reproduction rate dan kasus baru per juta penduduk di United Kingdom.
 
-#### Indonesia: Indeks Ketat Kebijakan vs Kematian
-![Indonesia Stringency vs Deaths](indonesia_stringency_vs_deaths.png)
-Hubungan antara indeks ketat kebijakan pemerintah dan jumlah kematian di Indonesia.
+#### Indonesia: Reproduction Rate vs Vaksinasi
+![Indonesia Reproduction vs Vaccination](indonesia_reproduction_vs_vaccination.png)
+Hubungan antara reproduction rate dan persentase populasi yang divaksinasi penuh di Indonesia.
 
-#### UK: Indeks Ketat Kebijakan vs Kematian
-![UK Stringency vs Deaths](uk_stringency_vs_deaths.png)
-Hubungan antara indeks ketat kebijakan pemerintah dan jumlah kematian di United Kingdom.
+#### UK: Reproduction Rate vs Vaksinasi
+![UK Reproduction vs Vaccination](uk_reproduction_vs_vaccination.png)
+Hubungan antara reproduction rate dan persentase populasi yang divaksinasi penuh di United Kingdom.
 
-#### Indonesia: Indeks Ketat Kebijakan vs Kasus Baru
-![Indonesia Stringency vs Cases](indonesia_stringency_vs_cases.png)
-Hubungan antara indeks ketat kebijakan dan jumlah kasus baru di Indonesia.
+#### Indonesia: Kasus per Juta vs Vaksinasi
+![Indonesia Cases per Million vs Vaccination](indonesia_cases_per_million_vs_vaccination.png)
+Hubungan antara kasus baru per juta dan persentase vaksinasi penuh di Indonesia.
 
-#### UK: Indeks Ketat Kebijakan vs Kasus Baru
-![UK Stringency vs Cases](uk_stringency_vs_cases.png)
-Hubungan antara indeks ketat kebijakan dan jumlah kasus baru di United Kingdom.
+#### UK: Kasus per Juta vs Vaksinasi
+![UK Cases per Million vs Vaccination](uk_cases_per_million_vs_vaccination.png)
+Hubungan antara kasus baru per juta dan persentase vaksinasi penuh di United Kingdom.
 
-#### Indonesia: Indeks Ketat vs Reproduction Rate
-![Indonesia Stringency vs Reproduction](indonesia_stringency_vs_reproduction.png)
-Hubungan antara kebijakan ketat dan reproduction rate di Indonesia.
+#### Indonesia: Reproduction Rate vs Hospitalisasi
+![Indonesia Reproduction vs Hospitalizations](indonesia_reproduction_vs_hospitalizations.png)
+Hubungan antara reproduction rate dan rawat inap mingguan per juta di Indonesia.
 
-#### South Korea: Indeks Ketat vs Reproduction Rate
-![South Korea Stringency vs Reproduction](south_korea_stringency_vs_reproduction.png)
-Hubungan antara kebijakan ketat dan reproduction rate di South Korea.
+#### UK: Reproduction Rate vs Hospitalisasi
+![UK Reproduction vs Hospitalizations](uk_reproduction_vs_hospitalizations.png)
+Hubungan antara reproduction rate dan rawat inap mingguan per juta di United Kingdom.
 
-#### Indonesia: Vaksinasi vs Reproduction Rate
-![Indonesia Vaccinations vs Reproduction](indonesia_vaccinations_vs_reproduction.png)
-Hubungan antara jumlah vaksinasi harian dan reproduction rate di Indonesia.
+#### Indonesia: Kasus per Juta vs Hospitalisasi
+![Indonesia Cases per Million vs Hospitalizations](indonesia_cases_per_million_vs_hospitalizations.png)
+Hubungan antara kasus baru per juta dan rawat inap mingguan per juta di Indonesia.
 
-#### South Korea: Vaksinasi vs Reproduction Rate
-![South Korea Vaccinations vs Reproduction](south_korea_vaccinations_vs_reproduction.png)
-Hubungan antara jumlah vaksinasi harian dan reproduction rate di South Korea.
+#### UK: Kasus per Juta vs Hospitalisasi
+![UK Cases per Million vs Hospitalizations](uk_cases_per_million_vs_hospitalizations.png)
+Hubungan antara kasus baru per juta dan rawat inap mingguan per juta di United Kingdom.
 
-#### Indonesia: Vaksinasi vs Kematian
-![Indonesia Vaccinations vs Deaths](indonesia_vaccinations_vs_deaths.png)
-Hubungan antara jumlah vaksinasi harian dan kematian di Indonesia.
+#### Indonesia: Vaksinasi vs Hospitalisasi
+![Indonesia Vaccination vs Hospitalizations](indonesia_vaccination_vs_hospitalizations.png)
+Hubungan antara persentase vaksinasi penuh dan rawat inap mingguan per juta di Indonesia.
 
-#### UK: Vaksinasi vs Kematian
-![UK Vaccinations vs Deaths](uk_vaccinations_vs_deaths.png)
-Hubungan antara jumlah vaksinasi harian dan kematian di United Kingdom.
+#### UK: Vaksinasi vs Hospitalisasi
+![UK Vaccination vs Hospitalizations](uk_vaccination_vs_hospitalizations.png)
+Hubungan antara persentase vaksinasi penuh dan rawat inap mingguan per juta di United Kingdom.
 
 ## Prediksi
 
-### Prediksi Kematian dari Kasus (Linear Regression)
-![Prediksi Kematian](deaths_prediction_linear.png)
-Grafik menunjukkan prediksi kematian menggunakan Linear Regression dari data kasus baru. Garis biru adalah data aktual, garis merah adalah prediksi.
+### Prediksi Kasus per Juta dari Vaksinasi (Linear Regression)
+![Prediksi Kasus per Juta Linear](cases_per_million_prediction_linear.png)
+Prediksi kasus baru per juta penduduk dari persentase vaksinasi penuh menggunakan Linear Regression.
 
-### Prediksi Kasus dari Kebijakan (Linear Regression)
-![Prediksi Kasus Linear](cases_prediction_linear.png)
-Prediksi jumlah kasus baru dari variabel kebijakan (stringency_index, new_vaccinations, new_tests) menggunakan Linear Regression.
+### Prediksi Kasus per Juta dari Multiple Variables (Linear Regression)
+![Prediksi Kasus per Juta Multi Linear](cases_per_million_prediction_linear_multi.png)
+Prediksi kasus baru per juta dari reproduction_rate dan people_fully_vaccinated_per_hundred menggunakan Linear Regression.
 
-### Prediksi Kasus dari Kebijakan (Random Forest)
-![Prediksi Kasus RF](cases_prediction_rf.png)
-Prediksi jumlah kasus baru menggunakan Random Forest dengan parameter n_estimators=100, max_depth=5.
+### Prediksi Kasus per Juta dari Multiple Variables (Random Forest)
+![Prediksi Kasus per Juta Multi RF](cases_per_million_prediction_rf_multi.png)
+Prediksi kasus baru per juta dari reproduction_rate dan people_fully_vaccinated_per_hundred menggunakan Random Forest.
 
 ## Penjelasan R² Score
 
@@ -86,21 +90,21 @@ R² Score (koefisien determinasi) adalah ukuran seberapa baik model regresi coco
 
 ## Hasil Prediksi
 
-### Linear Regression untuk Kematian dari Kasus:
-- R² Score: -28.83 (sangat buruk, negatif - model tidak cocok sama sekali)
-- Koefisien: 0.033
-- Intercept: 4.316
-- Interpretasi: Model gagal menjelaskan hubungan kematian vs kasus
+### Linear Regression untuk Kasus per Juta dari Vaksinasi:
+- R² Score: -1.004 (buruk, negatif)
+- Koefisien: [-1.348]
+- Intercept: 52.216
+- Interpretasi: Hubungan negatif lemah antara vaksinasi dan kasus per juta
 
-### Linear Regression untuk Kasus dari Kebijakan:
-- R² Score: 0.421 (cukup baik - menjelaskan 42.1% variasi)
-- Koefisien: [2425.99, -0.068, 0.197] untuk [stringency, vaccinations, tests]
-- Intercept: -173258.69
-- Interpretasi: Model moderate, masih ada 57.9% variasi yang tidak dijelaskan
+### Linear Regression untuk Kasus per Juta dari Multiple Variables:
+- R² Score: -0.708 (buruk, negatif)
+- Koefisien: [42.746, -1.117] untuk [reproduction_rate, vaccination]
+- Intercept: 9.630
+- Interpretasi: Model gagal menjelaskan variasi dalam data
 
-### Random Forest untuk Kasus dari Kebijakan:
-- R² Score: -0.652 (buruk, negatif - kemungkinan overfitting)
-- Interpretasi: Model terlalu kompleks untuk data yang tersedia
+### Random Forest untuk Kasus per Juta dari Multiple Variables:
+- R² Score: -28.864 (sangat buruk, negatif - severe overfitting)
+- Interpretasi: Model Random Forest overfitting parah pada data yang terbatas
 
 ## Kesimpulan
 Analisis bivariate menunjukkan pola evolusi hubungan antara variabel COVID-19 dari waktu ke waktu. Model prediksi sederhana memberikan hasil yang bervariasi, dengan performa terbaik pada prediksi kasus dari kebijakan menggunakan Linear Regression.
